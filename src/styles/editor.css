@@ -1,0 +1,455 @@
+/* Add this to your CSS */
+.editor-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .editor-toolbar {
+    position: relative;
+    z-index: 10;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  
+  .editor-pages-container {
+    flex: 1;
+    overflow-y: auto;
+    background: #f0f0f0;
+    padding: 20px;
+    padding-top: 0;
+  }
+  
+  /* A4 Page Styles */
+  .a4-page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 20mm;
+    margin: 0 auto 20px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    box-sizing: border-box;
+  }
+  
+  .page-number {
+    position: absolute;
+    bottom: 10mm;
+    right: 20mm;
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .page-break {
+    page-break-after: always;
+    break-after: page;
+    margin-bottom: 20px;
+    border-bottom: 1px dashed #ccc;
+  }
+  
+  .ql-editor {
+    padding: 0 !important;
+    min-height: auto !important;
+  }
+  
+  .ql-formats {
+    margin-right: 8px !important;
+    border-right: 1px solid #e5e7eb;
+    padding-right: 8px;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  
+  .ql-formats:last-child {
+    border-right: none;
+    margin-left: auto;
+  }
+  
+  /* Custom button styles */
+  .ql-picker {
+    height: 24px !important;
+  }
+  
+  .ql-picker-label {
+    padding: 0 4px !important;
+    border: 1px solid #e5e7eb !important;
+    border-radius: 4px !important;
+  }
+  
+  .ql-picker-options {
+    border: 1px solid #e5e7eb !important;
+    border-radius: 4px !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+  }
+  
+  /* Single line toolbar styles */
+  .single-line-toolbar .ql-toolbar {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding: 8px 16px;
+    gap: 4px;
+    align-items: center;
+  }
+  
+  .single-line-toolbar .ql-formats {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 8px;
+    border-right: 1px solid #e5e7eb;
+  }
+  
+  .single-line-toolbar .ql-formats:last-child {
+    border-right: none;
+    margin-left: auto;
+  }
+  
+  .single-line-toolbar .ql-toolbar button {
+    padding: 4px;
+    border-radius: 4px;
+  }
+  
+  .single-line-toolbar .ql-toolbar button:hover {
+    background-color: #f3f4f6;
+  }
+  
+  .single-line-toolbar .ql-toolbar .ql-picker {
+    height: 28px;
+    margin: 0;
+  }
+  
+  .single-line-toolbar .ql-toolbar .ql-picker-label {
+    padding: 0 8px;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+  }
+  
+  .single-line-toolbar .ql-toolbar .ql-picker-options {
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  /* Override default editor styles */
+  .ProseMirror {
+    border: none !important;
+    border-radius: 0 !important;
+    min-height: 500px;
+    padding: 0;
+  }
+  
+  /* Style the editor container */
+  .ProseMirror-focused {
+    outline: none !important;
+  }
+  
+  /* Style the toolbar */
+  .ProseMirror-menubar {
+    border: none !important;
+    padding: 0.75rem 1rem;
+    background-color: #ffffff;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    overflow-x: auto;
+  }
+  
+  /* Style the menu buttons */
+  .ProseMirror-menu-button {
+    border: 1px solid #e5e7eb !important;
+    border-radius: 0.25rem !important;
+    margin: 0 0.25rem;
+    padding: 0.5rem;
+    background-color: #ffffff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    height: 32px;
+  }
+  
+  .ProseMirror-menu-button:hover {
+    background-color: #f3f4f6 !important;
+    border-color: #d1d5db !important;
+  }
+  
+  /* Style the active menu button */
+  .ProseMirror-menu-button.is-active {
+    background-color: #e5e7eb !important;
+    border-color: #9ca3af !important;
+  }
+  
+  /* Style the dropdown menus */
+  .ProseMirror-menu-dropdown {
+    border: 1px solid #e5e7eb !important;
+    border-radius: 0.25rem !important;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Style the dropdown items */
+  .ProseMirror-menu-dropdown-item {
+    padding: 0.5rem 1rem;
+  }
+  
+  .ProseMirror-menu-dropdown-item:hover {
+    background-color: #f3f4f6 !important;
+  }
+  
+  /* Style the active dropdown item */
+  .ProseMirror-menu-dropdown-item.is-active {
+    background-color: #e5e7eb !important;
+  }
+  
+  .editor-toolbar-content {
+    .ProseMirror {
+      display: none; /* Hide the editor part */
+    }
+    
+    .ProseMirror-menubar {
+      border: none !important;
+      padding: 0.75rem 1rem;
+      background-color: #ffffff;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 8px;
+      overflow-x: auto;
+      margin: 0;
+    }
+  }
+  
+  /* Custom Toolbar Styles */
+  .custom-toolbar {
+    width: 100%;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 8px 12px;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .custom-toolbar-btn {
+    background: #f8f9fa;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 15px;
+    color: #222;
+    cursor: pointer;
+    transition: background 0.15s, border 0.15s;
+    outline: none;
+    min-width: 32px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .custom-toolbar-btn:hover, .custom-toolbar-btn:focus {
+    background: #e5e7eb;
+    border-color: #cbd5e1;
+  }
+  
+  .custom-toolbar-dropdown {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 15px;
+    color: #222;
+    outline: none;
+    min-width: 120px;
+    margin-right: 4px;
+  }
+  
+  .custom-toolbar-dropdown:focus {
+    border-color: #a5b4fc;
+  }
+  
+  /* Document Editor Layout */
+  .document-editor {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .document-toolbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .document-content {
+    flex: 1;
+    overflow-y: auto;
+    background: #f0f0f0;
+    padding: 2rem;
+  }
+  
+  .document-page {
+    background: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .document-page-content {
+    min-height: 1056px;
+    width: 816px;
+    padding: 40px;
+    position: relative;
+  }
+  
+  .page-break {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px dashed #e5e7eb;
+  }
+  
+  .page-number {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 2rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    background: white;
+    padding: 0 0.5rem;
+  }
+  
+  /* Editor Styles */
+  .ProseMirror {
+    min-height: 100%;
+    outline: none;
+  }
+  
+  .ProseMirror p {
+    margin: 0;
+    line-height: 1.5;
+  }
+  
+  .ProseMirror h1,
+  .ProseMirror h2,
+  .ProseMirror h3,
+  .ProseMirror h4,
+  .ProseMirror h5,
+  .ProseMirror h6 {
+    margin: 1.5rem 0 0.5rem;
+    line-height: 1.2;
+  }
+  
+  .ProseMirror img {
+    max-width: 100%;
+    height: auto;
+    margin: 1rem 0;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1024px) {
+    .document-page-content {
+      width: 100%;
+      min-height: auto;
+    }
+  }
+  
+  /* Scrollbar Styles */
+  .document-content::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .document-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  .document-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+  }
+  
+  .document-content::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  
+  /* Add Page Button */
+  .add-page-button {
+    width: 100%;
+    height: 4rem;
+    background: #f9fafb;
+    border: 2px dashed #e5e7eb;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 1rem;
+  }
+  
+  .add-page-button:hover {
+    background: #f3f4f6;
+    border-color: #d1d5db;
+  }
+  
+  .add-page-button svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: #6b7280;
+  }
+  
+  .add-page-button span {
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+  }
+  
+  /* Print Styles */
+  @media print {
+    .editor-toolbar,
+    .add-page-button {
+      display: none;
+    }
+  
+    .a4-page {
+      margin: 0;
+      box-shadow: none;
+      page-break-after: always;
+    }
+  
+    .a4-page:last-child {
+      page-break-after: avoid;
+    }
+  }
+  
+  .prose-page {
+    width: 794px; /* A4 width at 96dpi */
+    height: 1123px; /* A4 height at 96dpi */
+    margin: 24px auto;
+    background: white;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    padding: 48px 40px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  
+  .prose-page:last-child {
+    page-break-after: auto;
+  } 
