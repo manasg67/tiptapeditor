@@ -1,4 +1,3 @@
-import { OpenForWork } from "@/ui/open-for-work";
 import TiptapEditor from "@/ui/tiptap-editor";
 
 function Home() {

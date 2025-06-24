@@ -5,7 +5,6 @@ import { FaFilePdf, FaFileWord, FaFileImage } from 'react-icons/fa';
 
 import RichTextEditor, { BaseKit } from 'reactjs-tiptap-editor'
 
-import { locale } from 'reactjs-tiptap-editor/locale-bundle'
 import {
   BubbleMenuTwitter,
   BubbleMenuKatex,
@@ -59,6 +58,7 @@ import { Drawer } from 'reactjs-tiptap-editor/drawer';
 import { Excalidraw } from 'reactjs-tiptap-editor/excalidraw';
 import { Twitter } from 'reactjs-tiptap-editor/twitter';
 import { Mermaid } from 'reactjs-tiptap-editor/mermaid';
+import { PaginationPlus } from 'tiptap-pagination-plus';
 import 'reactjs-tiptap-editor/style.css'
 import 'prism-code-editor-lightweight/layout.css';
 import "prism-code-editor-lightweight/themes/github-dark.css"
@@ -83,6 +83,8 @@ function convertBase64ToBlob(base64: string) {
   
   const extensions = [
     BaseKit.configure({
+      focus: false,
+      selection: false,
       placeholder: {
         showOnlyCurrent: true,
       },
@@ -208,6 +210,7 @@ function convertBase64ToBlob(base64: string) {
       },
     }),
     Twitter,
+    PaginationPlus,
   ]
   
   const DEFAULT = {
@@ -392,12 +395,12 @@ const DocEditor = () => {
         // Try to get content from localStorage on initial load
         const savedContent = localStorage.getItem('editorContent');
         try {
-          return savedContent ? JSON.parse(savedContent) : DEFAULT;
+          return savedContent ? JSON.parse(savedContent) : `<p><b>And this.</b></p>`;
         } catch (e) {
           return DEFAULT;
         }
       });
-    const [theme, setTheme] = useState('light')
+    const [theme,] = useState('light')
     const [disable, setDisable] = useState(false)
     const [title, setTitle] = useState('Untitled Document')
     const [showDownloadModal, setShowDownloadModal] = useState(false);
@@ -527,7 +530,6 @@ const DocEditor = () => {
               dark={theme === 'dark'}
               disabled={disable}
               hideToolbar={disable}
-             
               bubbleMenu={{
                 render({ extensionsNames, editor, disabled }, bubbleDefaultDom) {
                   return <>

@@ -42,7 +42,7 @@
     "reactjs-tiptap-editor": "^0.3.5",
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.4",
-    "tiptap-pagination-plus": "^1.0.10"
+    "tiptap-pagination-plus": "^1.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.22.0",
